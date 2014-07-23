@@ -13,11 +13,384 @@
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Brands" EntityType="Model.Brand" />
+          <EntitySet Name="BrandSet" EntityType="Model.Brand" />
+          <EntitySet Name="FamilySet" EntityType="Model.Family" />
+          <EntitySet Name="ProductSet" EntityType="Model.Product" />
+          <EntitySet Name="SuplierSet" EntityType="Model.Suplier" />
+          <EntitySet Name="SuplierPhoneSet" EntityType="Model.SuplierPhone" />
+          <EntitySet Name="SuplierMailSet" EntityType="Model.SuplierMail" />
+          <AssociationSet Name="BrandProduct" Association="Model.BrandProduct">
+            <End Role="Brand" EntitySet="BrandSet" />
+            <End Role="Product" EntitySet="ProductSet" />
+          </AssociationSet>
+          <EntitySet Name="OfficeSet" EntityType="Model.Office" />
+          <EntitySet Name="OfficePhoneSet" EntityType="Model.OfficePhone" />
+          <AssociationSet Name="SuplierSuplierPhone" Association="Model.SuplierSuplierPhone">
+            <End Role="Suplier" EntitySet="SuplierSet" />
+            <End Role="SuplierPhone" EntitySet="SuplierPhoneSet" />
+          </AssociationSet>
+          <AssociationSet Name="SuplierSuplierMail" Association="Model.SuplierSuplierMail">
+            <End Role="Suplier" EntitySet="SuplierSet" />
+            <End Role="SuplierMail" EntitySet="SuplierMailSet" />
+          </AssociationSet>
+          <AssociationSet Name="OfficeOfficePhone" Association="Model.OfficeOfficePhone">
+            <End Role="Office" EntitySet="OfficeSet" />
+            <End Role="OfficePhone" EntitySet="OfficePhoneSet" />
+          </AssociationSet>
+          <EntitySet Name="OfficeMailSet" EntityType="Model.OfficeMail" />
+          <AssociationSet Name="OfficeOfficeMail" Association="Model.OfficeOfficeMail">
+            <End Role="Office" EntitySet="OfficeSet" />
+            <End Role="OfficeMail" EntitySet="OfficeMailSet" />
+          </AssociationSet>
+          <EntitySet Name="ProductsFamiliesSet" EntityType="Model.ProductsFamilies" />
+          <AssociationSet Name="FamilyProductsFamilies" Association="Model.FamilyProductsFamilies">
+            <End Role="Family" EntitySet="FamilySet" />
+            <End Role="ProductsFamilies" EntitySet="ProductsFamiliesSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProductProductsFamilies" Association="Model.ProductProductsFamilies">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="ProductsFamilies" EntitySet="ProductsFamiliesSet" />
+          </AssociationSet>
+          <EntitySet Name="OfficeStockSet" EntityType="Model.OfficeStock" />
+          <AssociationSet Name="ProductProductsOffices" Association="Model.ProductProductsOffices">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="ProductsOffices" EntitySet="OfficeStockSet" />
+          </AssociationSet>
+          <AssociationSet Name="OfficeProductsOffices" Association="Model.OfficeProductsOffices">
+            <End Role="Office" EntitySet="OfficeSet" />
+            <End Role="ProductsOffices" EntitySet="OfficeStockSet" />
+          </AssociationSet>
+          <EntitySet Name="ProductPriceSet" EntityType="Model.ProductPrice" />
+          <AssociationSet Name="ProductProductPrice" Association="Model.ProductProductPrice">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="ProductPrice" EntitySet="ProductPriceSet" />
+          </AssociationSet>
+          <AssociationSet Name="SuplierProductPrice" Association="Model.SuplierProductPrice">
+            <End Role="Suplier" EntitySet="SuplierSet" />
+            <End Role="ProductPrice" EntitySet="ProductPriceSet" />
+          </AssociationSet>
+          <EntitySet Name="OnlineProductSet" EntityType="Model.OnlineProduct" />
+          <AssociationSet Name="ProductOnlineProduct" Association="Model.ProductOnlineProduct">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="OnlineProduct" EntitySet="OnlineProductSet" />
+          </AssociationSet>
+          <EntitySet Name="ShipmentSet" EntityType="Model.Shipment" />
+          <EntitySet Name="ShipmentProductStockSet" EntityType="Model.ShipmentProductStock" />
+          <AssociationSet Name="ProductShipmentShipmentStock" Association="Model.ProductShipmentShipmentStock">
+            <End Role="ProductShipment" EntitySet="ShipmentSet" />
+            <End Role="ShipmentStock" EntitySet="ShipmentProductStockSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProductShipmentStock" Association="Model.ProductShipmentStock">
+            <End Role="Product" EntitySet="ProductSet" />
+            <End Role="ShipmentStock" EntitySet="ShipmentProductStockSet" />
+          </AssociationSet>
+          <AssociationSet Name="InboundShipment" Association="Model.InboundShipment">
+            <End Role="Office" EntitySet="OfficeSet" />
+            <End Role="Shipment" EntitySet="ShipmentSet" />
+          </AssociationSet>
+          <AssociationSet Name="OutboundShipment" Association="Model.OutboundShipment">
+            <End Role="Office" EntitySet="OfficeSet" />
+            <End Role="Shipment" EntitySet="ShipmentSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Brand" >
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
           <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Model.BrandProduct" FromRole="Brand" ToRole="Product" />
         </EntityType>
+        <EntityType Name="Family">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <NavigationProperty Name="ProductsFamilies" Relationship="Model.FamilyProductsFamilies" FromRole="Family" ToRole="ProductsFamilies" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <NavigationProperty Name="Brand" Relationship="Model.BrandProduct" FromRole="Product" ToRole="Brand" />
+          <Property Type="String" Name="BrandName" Nullable="false" />
+          <NavigationProperty Name="ProductsFamilies" Relationship="Model.ProductProductsFamilies" FromRole="Product" ToRole="ProductsFamilies" />
+          <NavigationProperty Name="ProductsOffices" Relationship="Model.ProductProductsOffices" FromRole="Product" ToRole="ProductsOffices" />
+          <NavigationProperty Name="ProductPrice" Relationship="Model.ProductProductPrice" FromRole="Product" ToRole="ProductPrice" />
+          <NavigationProperty Name="OnlineProduct" Relationship="Model.ProductOnlineProduct" FromRole="Product" ToRole="OnlineProduct" />
+          <NavigationProperty Name="ShipmentStock" Relationship="Model.ProductShipmentStock" FromRole="Product" ToRole="ShipmentStock" />
+        </EntityType>
+        <EntityType Name="Suplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <NavigationProperty Name="Phones" Relationship="Model.SuplierSuplierPhone" FromRole="Suplier" ToRole="SuplierPhone" />
+          <NavigationProperty Name="Emails" Relationship="Model.SuplierSuplierMail" FromRole="Suplier" ToRole="SuplierMail" />
+          <NavigationProperty Name="ProductPrice" Relationship="Model.SuplierProductPrice" FromRole="Suplier" ToRole="ProductPrice" />
+        </EntityType>
+        <EntityType Name="SuplierPhone">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Type="String" Name="Number" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Suplier" Relationship="Model.SuplierSuplierPhone" FromRole="SuplierPhone" ToRole="Suplier" />
+          <Property Type="Int32" Name="SuplierId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SuplierMail">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Type="String" Name="Email" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Suplier" Relationship="Model.SuplierSuplierMail" FromRole="SuplierMail" ToRole="Suplier" />
+          <Property Type="Int32" Name="SuplierId" Nullable="false" />
+        </EntityType>
+        <Association Name="BrandProduct">
+          <End Type="Model.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" />
+          <NavigationProperty Name="Phones" Relationship="Model.OfficeOfficePhone" FromRole="Office" ToRole="OfficePhone" />
+          <NavigationProperty Name="Emails" Relationship="Model.OfficeOfficeMail" FromRole="Office" ToRole="OfficeMail" />
+          <NavigationProperty Name="ProductsOffices" Relationship="Model.OfficeProductsOffices" FromRole="Office" ToRole="ProductsOffices" />
+          <NavigationProperty Name="InboundShipments" Relationship="Model.InboundShipment" FromRole="Office" ToRole="Shipment" />
+          <NavigationProperty Name="OutboundShipments" Relationship="Model.OutboundShipment" FromRole="Office" ToRole="Shipment" />
+        </EntityType>
+        <EntityType Name="OfficePhone">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Type="Int32" Name="Number" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Office" Relationship="Model.OfficeOfficePhone" FromRole="OfficePhone" ToRole="Office" />
+        </EntityType>
+        <Association Name="SuplierSuplierPhone">
+          <End Type="Model.Suplier" Role="Suplier" Multiplicity="1" />
+          <End Type="Model.SuplierPhone" Role="SuplierPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplierPhone">
+              <PropertyRef Name="SuplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SuplierSuplierMail">
+          <End Type="Model.Suplier" Role="Suplier" Multiplicity="1" />
+          <End Type="Model.SuplierMail" Role="SuplierMail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuplierMail">
+              <PropertyRef Name="SuplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfficeOfficePhone">
+          <End Type="Model.Office" Role="Office" Multiplicity="1" />
+          <End Type="Model.OfficePhone" Role="OfficePhone" Multiplicity="*" />
+        </Association>
+        <EntityType Name="OfficeMail">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Type="String" Name="Email" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Office" Relationship="Model.OfficeOfficeMail" FromRole="OfficeMail" ToRole="Office" />
+        </EntityType>
+        <Association Name="OfficeOfficeMail">
+          <End Type="Model.Office" Role="Office" Multiplicity="1" />
+          <End Type="Model.OfficeMail" Role="OfficeMail" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ProductsFamilies" >
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="FamilyName" />
+          </Key>
+          <NavigationProperty Name="Family" Relationship="Model.FamilyProductsFamilies" FromRole="ProductsFamilies" ToRole="Family" />
+          <Property Type="String" Name="FamilyName" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Model.ProductProductsFamilies" FromRole="ProductsFamilies" ToRole="Product" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+        </EntityType>
+        <Association Name="FamilyProductsFamilies">
+          <End Type="Model.Family" Role="Family" Multiplicity="1" />
+          <End Type="Model.ProductsFamilies" Role="ProductsFamilies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ProductsFamilies">
+              <PropertyRef Name="FamilyName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductProductsFamilies">
+          <End Type="Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="Model.ProductsFamilies" Role="ProductsFamilies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsFamilies">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OfficeStock" >
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="OfficeId" />
+          </Key>
+          <NavigationProperty Name="Product" Relationship="Model.ProductProductsOffices" FromRole="ProductsOffices" ToRole="Product" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <NavigationProperty Name="Office" Relationship="Model.OfficeProductsOffices" FromRole="ProductsOffices" ToRole="Office" />
+          <Property Type="Int32" Name="OfficeId" Nullable="false" />
+          <Property Type="Int32" Name="Stock" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductProductsOffices">
+          <End Type="Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="Model.OfficeStock" Role="ProductsOffices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOffices">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OfficeProductsOffices">
+          <End Type="Model.Office" Role="Office" Multiplicity="1" />
+          <End Type="Model.OfficeStock" Role="ProductsOffices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Office">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOffices">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Type="DateTime" Name="Date" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Decimal" Name="Price" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Model.ProductProductPrice" FromRole="ProductPrice" ToRole="Product" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <NavigationProperty Name="Suplier" Relationship="Model.SuplierProductPrice" FromRole="ProductPrice" ToRole="Suplier" />
+          <Property Type="Int32" Name="SuplierId" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductProductPrice">
+          <End Type="Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="Model.ProductPrice" Role="ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SuplierProductPrice">
+          <End Type="Model.Suplier" Role="Suplier" Multiplicity="1" />
+          <End Type="Model.ProductPrice" Role="ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="SuplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OnlineProduct" >
+          <Key>
+            <PropertyRef Name="URL" />
+          </Key>
+          <Property Type="String" Name="URL" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductOnlineProduct">
+          <End Type="Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="Model.OnlineProduct" Role="OnlineProduct" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Shipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ShipmentStock" Relationship="Model.ProductShipmentShipmentStock" FromRole="ProductShipment" ToRole="ShipmentStock" />
+          <Property Type="String" Name="Status" Nullable="false" />
+          <Property Type="String" Name="ShippedDate" Nullable="false" />
+          <Property Type="String" Name="DeliveredDate" Nullable="false" />
+          <NavigationProperty Name="DestinationOffice" Relationship="Model.InboundShipment" FromRole="Shipment" ToRole="Office" />
+          <NavigationProperty Name="OriginOffice" Relationship="Model.OutboundShipment" FromRole="Shipment" ToRole="Office" />
+        </EntityType>
+        <EntityType Name="ShipmentProductStock" >
+          <Key>
+            <PropertyRef Name="ProductShipmentId" />
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <NavigationProperty Name="ProductShipment" Relationship="Model.ProductShipmentShipmentStock" FromRole="ShipmentStock" ToRole="ProductShipment" />
+          <Property Type="Int32" Name="ProductShipmentId" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Model.ProductShipmentStock" FromRole="ShipmentStock" ToRole="Product" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="Amount" Nullable="false" />
+        </EntityType>
+        <Association Name="ProductShipmentShipmentStock">
+          <End Type="Model.Shipment" Role="ProductShipment" Multiplicity="1" />
+          <End Type="Model.ShipmentProductStock" Role="ShipmentStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductShipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentStock">
+              <PropertyRef Name="ProductShipmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductShipmentStock">
+          <End Type="Model.Product" Role="Product" Multiplicity="1" />
+          <End Type="Model.ShipmentProductStock" Role="ShipmentStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShipmentStock">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InboundShipment">
+          <End Type="Model.Office" Role="Office" Multiplicity="*" />
+          <End Type="Model.Shipment" Role="Shipment" Multiplicity="1" />
+        </Association>
+        <Association Name="OutboundShipment">
+          <End Type="Model.Office" Role="Office" Multiplicity="*" />
+          <End Type="Model.Shipment" Role="Shipment" Multiplicity="1" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -46,7 +419,97 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Model" >
-        <EntityTypeShape EntityType="Model.Brand" Width="1.5" PointX="8.25" PointY="1.75" Height="1.211080729166667" />
+        <EntityTypeShape EntityType="Model.Brand" Width="1.5" PointX="1.625" PointY="0.875" Height="1.4033821614583335" />
+        <EntityTypeShape EntityType="Model.Family" Width="1.5" PointX="0.5" PointY="3" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Model.Product" Width="1.5" PointX="5.5" PointY="1" Height="2.941793619791667" />
+        <EntityTypeShape EntityType="Model.Suplier" Width="1.5" PointX="10" PointY="0.875" Height="1.787985026041667" />
+        <EntityTypeShape EntityType="Model.SuplierPhone" Width="1.5" PointX="12.875" PointY="0.5" Height="1.2110807291666668" />
+        <EntityTypeShape EntityType="Model.SuplierMail" Width="1.5" PointX="12.875" PointY="2.625" Height="1.211080729166667" />
+        <AssociationConnector Association="Model.BrandProduct">
+          <ConnectorPoint PointX="3.125" PointY="1.639191080729167" />
+          <ConnectorPoint PointX="5.5" PointY="1.639191080729167" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.Office" Width="1.5" PointX="9.875" PointY="4.75" Height="1.7879850260416665" />
+        <EntityTypeShape EntityType="Model.OfficePhone" Width="1.5" PointX="13.125" PointY="4.875" Height="1.4033821614583335" />
+        <AssociationConnector Association="Model.SuplierSuplierPhone">
+          <ConnectorPoint PointX="11.5" PointY="1.485341796875" />
+          <ConnectorPoint PointX="12.875" PointY="1.485341796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.SuplierSuplierMail">
+          <ConnectorPoint PointX="10.90625" PointY="2.8552864583333331" />
+          <ConnectorPoint PointX="10.90625" PointY="3.9971321614583335" />
+          <ConnectorPoint PointX="12.875" PointY="3.9971321614583335" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.OfficeOfficePhone">
+          <ConnectorPoint PointX="11.375" PointY="5.5766910807291667" />
+          <ConnectorPoint PointX="13.125" PointY="5.5766910807291667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.OfficeMail" Width="1.5" PointX="13.125" PointY="6.5" Height="1.2110807291666665" />
+        <AssociationConnector Association="Model.OfficeOfficeMail">
+          <ConnectorPoint PointX="10.625" PointY="6.7302864583333326" />
+          <ConnectorPoint PointX="10.625" PointY="7.3168348098958322" />
+          <ConnectorPoint PointX="13.125" PointY="7.3168348098958322" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.ProductsFamilies" Width="1.5" PointX="3.125" PointY="3" Height="1.7879850260416657" />
+        <AssociationConnector Association="Model.FamilyProductsFamilies">
+          <ConnectorPoint PointX="2" PointY="3.797841796875" />
+          <ConnectorPoint PointX="3.125" PointY="3.797841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.ProductProductsFamilies">
+          <ConnectorPoint PointX="5.5" PointY="3.4708968098958337" />
+          <ConnectorPoint PointX="4.625" PointY="3.4708968098958337" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.OfficeStock" Width="1.5" PointX="6" PointY="6.625" Height="1.9802864583333326" />
+        <AssociationConnector Association="Model.ProductProductsOffices">
+          <ConnectorPoint PointX="6.2568375781249994" PointY="3.941793619791667" />
+          <ConnectorPoint PointX="6.2568375781249994" PointY="6.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.OfficeProductsOffices">
+          <ConnectorPoint PointX="9.875" PointY="6.9660953776041659" />
+          <ConnectorPoint PointX="7.5" PointY="6.9660953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.ProductPrice" Width="1.5" PointX="7.75" PointY="1" Height="2.172587890625" />
+        <AssociationConnector Association="Model.ProductProductPrice">
+          <ConnectorPoint PointX="7" PointY="2.0862939453125" />
+          <ConnectorPoint PointX="7.75" PointY="2.0862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.SuplierProductPrice">
+          <ConnectorPoint PointX="10" PointY="2.0237939453125" />
+          <ConnectorPoint PointX="9.25" PointY="2.0237939453125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.OnlineProduct" Width="1.5" PointX="7.75" PointY="4" Height="1.4033821614583326" />
+        <AssociationConnector Association="Model.ProductOnlineProduct">
+          <ConnectorPoint PointX="6.63867515625" PointY="3.941793619791667" />
+          <ConnectorPoint PointX="6.63867515625" PointY="4.7519157486979156" />
+          <ConnectorPoint PointX="7.75" PointY="4.7519157486979156" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Model.Shipment" Width="1.5" PointX="2.875" PointY="4.875" Height="2.3648893229166665" />
+        <EntityTypeShape EntityType="Model.ShipmentProductStock" Width="1.5" PointX="2.75" PointY="8" Height="1.9802864583333335" />
+        <AssociationConnector Association="Model.ProductShipmentShipmentStock">
+          <ConnectorPoint PointX="3.5625" PointY="7.2398893229166665" />
+          <ConnectorPoint PointX="3.5625" PointY="8" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.ProductShipmentStock">
+          <ConnectorPoint PointX="5.71875" PointY="3.941793619791667" />
+          <ConnectorPoint PointX="5.71875" PointY="9.3240364583333317" />
+          <ConnectorPoint PointX="4.25" PointY="9.3240364583333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.InboundShipment">
+          <ConnectorPoint PointX="9.875" PointY="6.0141910807291659" />
+          <ConnectorPoint PointX="6.3401709114583324" PointY="6.014191080729165" />
+          <ConnectorPoint PointX="6.1735042447916664" PointY="6.0141910807291659" />
+          <ConnectorPoint PointX="5.802083333333333" PointY="6.014191080729165" />
+          <ConnectorPoint PointX="5.635416666666667" PointY="6.0141910807291659" />
+          <ConnectorPoint PointX="4.375" PointY="6.0141910807291659" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.OutboundShipment">
+          <ConnectorPoint PointX="9.875" PointY="6.3508455403645829" />
+          <ConnectorPoint PointX="6.3401709114583324" PointY="6.350845540364582" />
+          <ConnectorPoint PointX="6.1735042447916664" PointY="6.3508455403645829" />
+          <ConnectorPoint PointX="5.802083333333333" PointY="6.350845540364582" />
+          <ConnectorPoint PointX="5.635416666666667" PointY="6.3508455403645829" />
+          <ConnectorPoint PointX="4.375" PointY="6.3508455403645829" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
