@@ -20,8 +20,8 @@ using System.Xml.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("Model", "BrandProduct", "Brand", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Brand), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.Product), true)]
-[assembly: EdmRelationshipAttribute("Model", "SuplierSuplierPhone", "Suplier", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Suplier), "SuplierPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.SuplierPhone), true)]
-[assembly: EdmRelationshipAttribute("Model", "SuplierSuplierMail", "Suplier", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Suplier), "SuplierMail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.SuplierMail), true)]
+[assembly: EdmRelationshipAttribute("Model", "SuplierSuplierPhone", "Suplier", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Supplier), "SuplierPhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.SupplierPhone), true)]
+[assembly: EdmRelationshipAttribute("Model", "SuplierSuplierMail", "Suplier", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Supplier), "SuplierMail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.SupplierMail), true)]
 [assembly: EdmRelationshipAttribute("Model", "OfficeOfficePhone", "Office", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Office), "OfficePhone", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.OfficePhone))]
 [assembly: EdmRelationshipAttribute("Model", "OfficeOfficeMail", "Office", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Office), "OfficeMail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.OfficeMail))]
 [assembly: EdmRelationshipAttribute("Model", "FamilyProductsFamilies", "Family", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Family), "ProductsFamilies", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.ProductsFamilies), true)]
@@ -29,7 +29,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Model", "ProductProductsOffices", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Product), "ProductsOffices", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.OfficeStock), true)]
 [assembly: EdmRelationshipAttribute("Model", "OfficeProductsOffices", "Office", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Office), "ProductsOffices", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.OfficeStock), true)]
 [assembly: EdmRelationshipAttribute("Model", "ProductProductPrice", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Product), "ProductPrice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.ProductPrice), true)]
-[assembly: EdmRelationshipAttribute("Model", "SuplierProductPrice", "Suplier", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Suplier), "ProductPrice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.ProductPrice), true)]
+[assembly: EdmRelationshipAttribute("Model", "SuplierProductPrice", "Suplier", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Supplier), "ProductPrice", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.ProductPrice), true)]
 [assembly: EdmRelationshipAttribute("Model", "ProductOnlineProduct", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Product), "OnlineProduct", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Entities.OnlineProduct))]
 [assembly: EdmRelationshipAttribute("Model", "ProductShipmentShipmentStock", "ProductShipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Shipment), "ShipmentStock", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.ShipmentProductStock), true)]
 [assembly: EdmRelationshipAttribute("Model", "ProductShipmentStock", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Entities.Product), "ShipmentStock", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Entities.ShipmentProductStock), true)]
@@ -137,50 +137,50 @@ namespace Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Suplier> SuplierSet
+        public ObjectSet<Supplier> SupplierSet
         {
             get
             {
-                if ((_SuplierSet == null))
+                if ((_SupplierSet == null))
                 {
-                    _SuplierSet = base.CreateObjectSet<Suplier>("SuplierSet");
+                    _SupplierSet = base.CreateObjectSet<Supplier>("SupplierSet");
                 }
-                return _SuplierSet;
+                return _SupplierSet;
             }
         }
-        private ObjectSet<Suplier> _SuplierSet;
+        private ObjectSet<Supplier> _SupplierSet;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SuplierPhone> SuplierPhoneSet
+        public ObjectSet<SupplierPhone> SupplierPhoneSet
         {
             get
             {
-                if ((_SuplierPhoneSet == null))
+                if ((_SupplierPhoneSet == null))
                 {
-                    _SuplierPhoneSet = base.CreateObjectSet<SuplierPhone>("SuplierPhoneSet");
+                    _SupplierPhoneSet = base.CreateObjectSet<SupplierPhone>("SupplierPhoneSet");
                 }
-                return _SuplierPhoneSet;
+                return _SupplierPhoneSet;
             }
         }
-        private ObjectSet<SuplierPhone> _SuplierPhoneSet;
+        private ObjectSet<SupplierPhone> _SupplierPhoneSet;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<SuplierMail> SuplierMailSet
+        public ObjectSet<SupplierMail> SupplierMailSet
         {
             get
             {
-                if ((_SuplierMailSet == null))
+                if ((_SupplierMailSet == null))
                 {
-                    _SuplierMailSet = base.CreateObjectSet<SuplierMail>("SuplierMailSet");
+                    _SupplierMailSet = base.CreateObjectSet<SupplierMail>("SupplierMailSet");
                 }
-                return _SuplierMailSet;
+                return _SupplierMailSet;
             }
         }
-        private ObjectSet<SuplierMail> _SuplierMailSet;
+        private ObjectSet<SupplierMail> _SupplierMailSet;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -355,27 +355,27 @@ namespace Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SuplierSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the SupplierSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSuplierSet(Suplier suplier)
+        public void AddToSupplierSet(Supplier supplier)
         {
-            base.AddObject("SuplierSet", suplier);
+            base.AddObject("SupplierSet", supplier);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SuplierPhoneSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the SupplierPhoneSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSuplierPhoneSet(SuplierPhone suplierPhone)
+        public void AddToSupplierPhoneSet(SupplierPhone supplierPhone)
         {
-            base.AddObject("SuplierPhoneSet", suplierPhone);
+            base.AddObject("SupplierPhoneSet", supplierPhone);
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the SuplierMailSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the SupplierMailSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSuplierMailSet(SuplierMail suplierMail)
+        public void AddToSupplierMailSet(SupplierMail supplierMail)
         {
-            base.AddObject("SuplierMailSet", suplierMail);
+            base.AddObject("SupplierMailSet", supplierMail);
         }
     
         /// <summary>
@@ -1310,11 +1310,13 @@ namespace Entities
         /// </summary>
         /// <param name="uRL">Initial value of the URL property.</param>
         /// <param name="active">Initial value of the Active property.</param>
-        public static OnlineProduct CreateOnlineProduct(global::System.String uRL, global::System.Boolean active)
+        /// <param name="id">Initial value of the Id property.</param>
+        public static OnlineProduct CreateOnlineProduct(global::System.String uRL, global::System.Boolean active, global::System.Int32 id)
         {
             OnlineProduct onlineProduct = new OnlineProduct();
             onlineProduct.URL = uRL;
             onlineProduct.Active = active;
+            onlineProduct.Id = id;
             return onlineProduct;
         }
 
@@ -1325,7 +1327,7 @@ namespace Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String URL
         {
@@ -1335,14 +1337,11 @@ namespace Entities
             }
             set
             {
-                if (_URL != value)
-                {
-                    OnURLChanging(value);
-                    ReportPropertyChanging("URL");
-                    _URL = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("URL");
-                    OnURLChanged();
-                }
+                OnURLChanging(value);
+                ReportPropertyChanging("URL");
+                _URL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("URL");
+                OnURLChanged();
             }
         }
         private global::System.String _URL;
@@ -1372,6 +1371,33 @@ namespace Entities
         private global::System.Boolean _Active;
         partial void OnActiveChanging(global::System.Boolean value);
         partial void OnActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
 
         #endregion
 
@@ -1695,14 +1721,14 @@ namespace Entities
         /// <param name="date">Initial value of the Date property.</param>
         /// <param name="price">Initial value of the Price property.</param>
         /// <param name="productId">Initial value of the ProductId property.</param>
-        /// <param name="suplierId">Initial value of the SuplierId property.</param>
-        public static ProductPrice CreateProductPrice(global::System.DateTime date, global::System.Decimal price, global::System.Int32 productId, global::System.Int32 suplierId)
+        /// <param name="supplierId">Initial value of the SupplierId property.</param>
+        public static ProductPrice CreateProductPrice(global::System.DateTime date, global::System.Decimal price, global::System.Int32 productId, global::System.Int32 supplierId)
         {
             ProductPrice productPrice = new ProductPrice();
             productPrice.Date = date;
             productPrice.Price = price;
             productPrice.ProductId = productId;
-            productPrice.SuplierId = suplierId;
+            productPrice.SupplierId = supplierId;
             return productPrice;
         }
 
@@ -1764,7 +1790,7 @@ namespace Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 ProductId
         {
@@ -1774,11 +1800,14 @@ namespace Entities
             }
             set
             {
-                OnProductIdChanging(value);
-                ReportPropertyChanging("ProductId");
-                _ProductId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ProductId");
-                OnProductIdChanged();
+                if (_ProductId != value)
+                {
+                    OnProductIdChanging(value);
+                    ReportPropertyChanging("ProductId");
+                    _ProductId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ProductId");
+                    OnProductIdChanged();
+                }
             }
         }
         private global::System.Int32 _ProductId;
@@ -1788,26 +1817,29 @@ namespace Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 SuplierId
+        public global::System.Int32 SupplierId
         {
             get
             {
-                return _SuplierId;
+                return _SupplierId;
             }
             set
             {
-                OnSuplierIdChanging(value);
-                ReportPropertyChanging("SuplierId");
-                _SuplierId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SuplierId");
-                OnSuplierIdChanged();
+                if (_SupplierId != value)
+                {
+                    OnSupplierIdChanging(value);
+                    ReportPropertyChanging("SupplierId");
+                    _SupplierId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SupplierId");
+                    OnSupplierIdChanged();
+                }
             }
         }
-        private global::System.Int32 _SuplierId;
-        partial void OnSuplierIdChanging(global::System.Int32 value);
-        partial void OnSuplierIdChanged();
+        private global::System.Int32 _SupplierId;
+        partial void OnSupplierIdChanging(global::System.Int32 value);
+        partial void OnSupplierIdChanged();
 
         #endregion
 
@@ -1859,15 +1891,15 @@ namespace Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "SuplierProductPrice", "Suplier")]
-        public Suplier Suplier
+        public Supplier Supplier
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierProductPrice", "Suplier").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierProductPrice", "Suplier").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierProductPrice", "Suplier").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierProductPrice", "Suplier").Value = value;
             }
         }
         /// <summary>
@@ -1875,17 +1907,17 @@ namespace Entities
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Suplier> SuplierReference
+        public EntityReference<Supplier> SupplierReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierProductPrice", "Suplier");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierProductPrice", "Suplier");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Suplier>("Model.SuplierProductPrice", "Suplier", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Supplier>("Model.SuplierProductPrice", "Suplier", value);
                 }
             }
         }
@@ -2460,24 +2492,24 @@ namespace Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="Suplier")]
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="Supplier")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Suplier : EntityObject
+    public partial class Supplier : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Suplier object.
+        /// Create a new Supplier object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Suplier CreateSuplier(global::System.Int32 id, global::System.String name)
+        public static Supplier CreateSupplier(global::System.Int32 id, global::System.String name)
         {
-            Suplier suplier = new Suplier();
-            suplier.Id = id;
-            suplier.Name = name;
-            return suplier;
+            Supplier supplier = new Supplier();
+            supplier.Id = id;
+            supplier.Name = name;
+            return supplier;
         }
 
         #endregion
@@ -2571,17 +2603,17 @@ namespace Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "SuplierSuplierPhone", "SuplierPhone")]
-        public EntityCollection<SuplierPhone> Phones
+        public EntityCollection<SupplierPhone> Phones
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SuplierPhone>("Model.SuplierSuplierPhone", "SuplierPhone");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SupplierPhone>("Model.SuplierSuplierPhone", "SuplierPhone");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SuplierPhone>("Model.SuplierSuplierPhone", "SuplierPhone", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SupplierPhone>("Model.SuplierSuplierPhone", "SuplierPhone", value);
                 }
             }
         }
@@ -2593,17 +2625,17 @@ namespace Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "SuplierSuplierMail", "SuplierMail")]
-        public EntityCollection<SuplierMail> Emails
+        public EntityCollection<SupplierMail> Emails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SuplierMail>("Model.SuplierSuplierMail", "SuplierMail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SupplierMail>("Model.SuplierSuplierMail", "SuplierMail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SuplierMail>("Model.SuplierSuplierMail", "SuplierMail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SupplierMail>("Model.SuplierSuplierMail", "SuplierMail", value);
                 }
             }
         }
@@ -2637,24 +2669,24 @@ namespace Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SuplierMail")]
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SupplierMail")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class SuplierMail : EntityObject
+    public partial class SupplierMail : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new SuplierMail object.
+        /// Create a new SupplierMail object.
         /// </summary>
         /// <param name="email">Initial value of the Email property.</param>
-        /// <param name="suplierId">Initial value of the SuplierId property.</param>
-        public static SuplierMail CreateSuplierMail(global::System.String email, global::System.Int32 suplierId)
+        /// <param name="supplierId">Initial value of the SupplierId property.</param>
+        public static SupplierMail CreateSupplierMail(global::System.String email, global::System.Int32 supplierId)
         {
-            SuplierMail suplierMail = new SuplierMail();
-            suplierMail.Email = email;
-            suplierMail.SuplierId = suplierId;
-            return suplierMail;
+            SupplierMail supplierMail = new SupplierMail();
+            supplierMail.Email = email;
+            supplierMail.SupplierId = supplierId;
+            return supplierMail;
         }
 
         #endregion
@@ -2693,24 +2725,24 @@ namespace Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 SuplierId
+        public global::System.Int32 SupplierId
         {
             get
             {
-                return _SuplierId;
+                return _SupplierId;
             }
             set
             {
-                OnSuplierIdChanging(value);
-                ReportPropertyChanging("SuplierId");
-                _SuplierId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SuplierId");
-                OnSuplierIdChanged();
+                OnSupplierIdChanging(value);
+                ReportPropertyChanging("SupplierId");
+                _SupplierId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SupplierId");
+                OnSupplierIdChanged();
             }
         }
-        private global::System.Int32 _SuplierId;
-        partial void OnSuplierIdChanging(global::System.Int32 value);
-        partial void OnSuplierIdChanged();
+        private global::System.Int32 _SupplierId;
+        partial void OnSupplierIdChanging(global::System.Int32 value);
+        partial void OnSupplierIdChanged();
 
         #endregion
 
@@ -2724,15 +2756,15 @@ namespace Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "SuplierSuplierMail", "Suplier")]
-        public Suplier Suplier
+        public Supplier Suplier
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierSuplierMail", "Suplier").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierSuplierMail", "Suplier").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierSuplierMail", "Suplier").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierSuplierMail", "Suplier").Value = value;
             }
         }
         /// <summary>
@@ -2740,17 +2772,17 @@ namespace Entities
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Suplier> SuplierReference
+        public EntityReference<Supplier> SuplierReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierSuplierMail", "Suplier");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierSuplierMail", "Suplier");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Suplier>("Model.SuplierSuplierMail", "Suplier", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Supplier>("Model.SuplierSuplierMail", "Suplier", value);
                 }
             }
         }
@@ -2762,24 +2794,24 @@ namespace Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SuplierPhone")]
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="SupplierPhone")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class SuplierPhone : EntityObject
+    public partial class SupplierPhone : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new SuplierPhone object.
+        /// Create a new SupplierPhone object.
         /// </summary>
         /// <param name="number">Initial value of the Number property.</param>
-        /// <param name="suplierId">Initial value of the SuplierId property.</param>
-        public static SuplierPhone CreateSuplierPhone(global::System.String number, global::System.Int32 suplierId)
+        /// <param name="supplierId">Initial value of the SupplierId property.</param>
+        public static SupplierPhone CreateSupplierPhone(global::System.String number, global::System.Int32 supplierId)
         {
-            SuplierPhone suplierPhone = new SuplierPhone();
-            suplierPhone.Number = number;
-            suplierPhone.SuplierId = suplierId;
-            return suplierPhone;
+            SupplierPhone supplierPhone = new SupplierPhone();
+            supplierPhone.Number = number;
+            supplierPhone.SupplierId = supplierId;
+            return supplierPhone;
         }
 
         #endregion
@@ -2818,24 +2850,24 @@ namespace Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 SuplierId
+        public global::System.Int32 SupplierId
         {
             get
             {
-                return _SuplierId;
+                return _SupplierId;
             }
             set
             {
-                OnSuplierIdChanging(value);
-                ReportPropertyChanging("SuplierId");
-                _SuplierId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SuplierId");
-                OnSuplierIdChanged();
+                OnSupplierIdChanging(value);
+                ReportPropertyChanging("SupplierId");
+                _SupplierId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SupplierId");
+                OnSupplierIdChanged();
             }
         }
-        private global::System.Int32 _SuplierId;
-        partial void OnSuplierIdChanging(global::System.Int32 value);
-        partial void OnSuplierIdChanged();
+        private global::System.Int32 _SupplierId;
+        partial void OnSupplierIdChanging(global::System.Int32 value);
+        partial void OnSupplierIdChanged();
 
         #endregion
 
@@ -2849,15 +2881,15 @@ namespace Entities
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Model", "SuplierSuplierPhone", "Suplier")]
-        public Suplier Suplier
+        public Supplier Suplier
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierSuplierPhone", "Suplier").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierSuplierPhone", "Suplier").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierSuplierPhone", "Suplier").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierSuplierPhone", "Suplier").Value = value;
             }
         }
         /// <summary>
@@ -2865,17 +2897,17 @@ namespace Entities
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Suplier> SuplierReference
+        public EntityReference<Supplier> SuplierReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Suplier>("Model.SuplierSuplierPhone", "Suplier");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Supplier>("Model.SuplierSuplierPhone", "Suplier");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Suplier>("Model.SuplierSuplierPhone", "Suplier", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Supplier>("Model.SuplierSuplierPhone", "Suplier", value);
                 }
             }
         }
